@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leo Simmons</title>
+  <style>
+    :root {
+      --dark: #2a2a2a;
+      --light: #f2f2f2;
+      --surface: #ffffff;
+      --muted: #9a9a9a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 2.4rem;
+    }
+
+    header p {
+      margin-top: 12px;
+      color: var(--muted);
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      gap: 30px;
+    }
+
+    .column {
+      background: var(--surface);
+      color: #1f1f1f;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+    }
+
+    /* CONTACT COLUMN */
+    .contact {
+      gap: 14px;
+    }
+
+    .contact-button {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 16px;
+      background: var(--dark);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-button span {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .contact-button:hover {
+      background: #1f1f1f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Leo Simmons</h1>
+  <p>Telecommunications · Electronics · Network & Systems Infrastructure</p>
+</header>
+
+<div class="columns">
+
+  <div class="column">
+    <h2>About</h2>
+    <p>
+      I work across telecommunications, electronics, and technical infrastructure,
+      with a focus on systems that are reliable, maintainable, and clearly understood.
+    </p>
+    <p>
+      My background includes enterprise communications, radio systems,
+      and hands-on technical environments where correctness and stability matter.
+    </p>
+  </div>
+
+  <div class="column">
+    <h2>Expertise</h2>
+    <ul>
+      <li>Enterprise voice and unified communications systems</li>
+      <li>Cisco Unified Communications (CUCM) administration</li>
+      <li>VoIP, call routing, and signalling concepts</li>
+      <li>Radio communications and RF fundamentals</li>
+      <li>Network infrastructure and fault diagnosis</li>
+      <li>Electronics and technical troubleshooting</li>
+    </ul>
+  </div>
+
+  <div class="column contact">
+    <h2>Contact</h2>
+
+    <a class="contact-button" href="mailto:leo@leosimmons.net">
+      Email
+      <span>leo@leosimmons.net</span>
+    </a>
+
+    <div class="contact-button">
+      Discord
+      <span>lpt6</span>
+    </div>
+
+    <a class="contact-button" href="https://ion16.org" target="_blank" rel="noopener">
+      Other Website
+      <span>ion16.org</span>
+    </a>
+
+    <a class="contact-button" href="https://www.linkedin.com" target="_blank" rel="noopener">
+      LinkedIn
+      <span>Professional profile</span>
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 Leo Simmons
+</footer>
+
+</body>
+</html>
