@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Leo Simmons - Telecommunications, Electronics, and Network & Systems Infrastructure professional specializing in enterprise voice systems and technical infrastructure.">
+  <meta property="og:title" content="Leo Simmons">
+  <meta property="og:description" content="Telecommunications, Electronics, and Network & Systems Infrastructure professional">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://leosimmons.net">
   <title>Leo Simmons</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
   <style>
     :root {
       --dark: #2a2a2a;
@@ -55,6 +61,7 @@
       padding: 32px;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
@@ -80,6 +87,10 @@
       color: #fff;
       text-decoration: none;
       font-weight: 500;
+      transition: background 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+      border: none;
+      width: 100%;
     }
 
     .contact-button span {
@@ -90,11 +101,21 @@
 
     .contact-button:hover {
       background: #1f1f1f;
+      transform: translateY(-1px);
+    }
+
+    .contact-button:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    .contact-button:active {
+      transform: translateY(0);
     }
 
     footer {
       text-align: center;
-      padding: 40px 20px;
+      padding: 60px 20px 40px;
       font-size: 0.85rem;
       color: var(--muted);
     }
@@ -105,6 +126,18 @@
       }
     }
   </style>
+  <script>
+    function copyDiscord() {
+      navigator.clipboard.writeText('lpt6').then(() => {
+        const btn = event.currentTarget;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = 'Discord<span>Copied to clipboard!</span>';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 2000);
+      });
+    }
+  </script>
 </head>
 <body>
 
@@ -147,17 +180,17 @@
       <span>leo@leosimmons.net</span>
     </a>
 
-    <div class="contact-button">
+    <button class="contact-button" onclick="copyDiscord()">
       Discord
       <span>lpt6</span>
-    </div>
+    </button>
 
     <a class="contact-button" href="https://ion16.org" target="_blank" rel="noopener">
       Other Website
       <span>ion16.org</span>
     </a>
 
-    <a class="contact-button" href="https://www.linkedin.com" target="_blank" rel="noopener">
+    <a class="contact-button" href="https://www.linkedin.com/in/leo-simmons-873209367/" target="_blank" rel="noopener">
       LinkedIn
       <span>Professional profile</span>
     </a>
