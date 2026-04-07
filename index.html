@@ -10,190 +10,341 @@
   <meta property="og:url" content="https://leosimmons.net">
   <title>Leo Simmons</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔧</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --dark: #1f1f1f;
-      --light: #ffffff;
-      --surface: #f5f5f5;
-      --muted: #6b6b6b;
+      --dark: #0a0a0a;
+      --light: #fafafa;
+      --surface: #f0f0f0;
+      --muted: #666666;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Space Grotesk', system-ui, sans-serif;
+      --shadow-hard: 4px 4px 0px var(--dark);
+      --shadow-hard-hover: 6px 6px 0px var(--dark);
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 32px;
+      --space-xl: 64px;
+      --space-2xl: 120px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
+      font-family: var(--font-body);
       background: var(--light);
       color: var(--dark);
-      line-height: 1.6;
+      line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    header {
-      padding: 70px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      color: var(--dark);
-      font-size: 2.4rem;
-    }
-
-    header p {
-      margin-top: 12px;
-      color: var(--muted);
-    }
-
-    .columns {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 20px;
-      gap: 30px;
-    }
-
-    .column {
-      background: var(--surface);
-      color: var(--dark);
-      padding: 32px;
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      justify-content: center;
+      padding: var(--space-2xl) var(--space-xl);
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    h2 {
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-size: 1.2rem;
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--dark);
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
     }
 
-    /* CONTACT COLUMN */
-    .contact {
-      gap: 14px;
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: var(--space-lg);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+    }
+
+    @keyframes heroIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== MARQUEE ===== */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 2px solid var(--dark);
+      border-bottom: 2px solid var(--dark);
+      padding: var(--space-md) 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .marquee.visible {
+      opacity: 1;
+    }
+
+    .marquee-track {
+      display: inline-flex;
+      animation: marqueeScroll 20s linear infinite;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding-right: 0;
+      color: var(--dark);
+    }
+
+    .marquee-content span {
+      opacity: 0.3;
+      margin: 0 24px;
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTIONS ===== */
+    .sections {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-2xl) var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xl);
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-lg);
+      line-height: 1;
+    }
+
+    .section-body {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--dark);
+      max-width: 700px;
+    }
+
+    .section-body p + p {
+      margin-top: var(--space-md);
+    }
+
+    .section-body ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .section-body ul li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      font-size: 1.05rem;
+    }
+
+    .section-body ul li:last-child {
+      border-bottom: none;
+    }
+
+    /* ===== CONTACT BUTTONS ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      max-width: 600px;
     }
 
     .contact-button {
-      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 16px;
+      padding: 24px 20px;
       background: var(--dark);
       color: #fff;
       text-decoration: none;
-      font-weight: 500;
-      transition: background 0.2s ease, transform 0.1s ease;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
       cursor: pointer;
-      border: none;
-      width: 100%;
+      border: 2px solid var(--dark);
+      box-shadow: var(--shadow-hard);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
-    .contact-button span {
+    .contact-button .label-sub {
       margin-top: 6px;
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
     }
 
     .contact-button:hover {
-      background: #333;
-      transform: translateY(-1px);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-hard-hover);
+    }
+
+    .contact-button:active {
+      transform: translate(4px, 4px);
+      box-shadow: none;
     }
 
     .contact-button:focus-visible {
       outline: 2px solid var(--dark);
-      outline-offset: 2px;
+      outline-offset: 4px;
     }
 
-    .contact-button:active {
-      transform: translateY(0);
-    }
-
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: var(--space-xl) var(--space-lg);
       font-size: 0.85rem;
       color: var(--muted);
+      letter-spacing: 0.02em;
     }
 
-    @media (max-width: 900px) {
-      .columns {
-        grid-template-columns: 1fr;
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-name,
+      .hero-subtitle {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .marquee-track {
+        animation: none;
+      }
+
+      .marquee {
+        opacity: 1;
+        transition: none;
       }
     }
   </style>
-  <script>
-    function copyDiscord() {
-      navigator.clipboard.writeText('lpt6').then(() => {
-        const btn = event.currentTarget;
-        const originalText = btn.innerHTML;
-        btn.innerHTML = 'Discord<span>Copied to clipboard!</span>';
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-        }, 2000);
-      });
-    }
-  </script>
 </head>
 <body>
 
-<header>
-  <h1>Leo Simmons</h1>
-  <p>Telecommunications · Electronics · Network & Systems Infrastructure</p>
-</header>
+<!-- HERO -->
+<section class="hero">
+  <h1 class="hero-name">Leo<br>Simmons</h1>
+  <p class="hero-subtitle">Telecommunications · Electronics · Network & Systems Infrastructure</p>
+</section>
 
-<div class="columns">
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <div class="marquee-content">
+      CUCM <span>✦</span> VoIP <span>✦</span> Radio Systems <span>✦</span> Networking <span>✦</span> Infrastructure <span>✦</span> Electronics <span>✦</span> Unified Comms <span>✦</span> Fault Diagnosis <span>✦</span> Call Routing <span>✦</span> RF Fundamentals <span>✦</span>
+    </div>
+    <div class="marquee-content" aria-hidden="true">
+      CUCM <span>✦</span> VoIP <span>✦</span> Radio Systems <span>✦</span> Networking <span>✦</span> Infrastructure <span>✦</span> Electronics <span>✦</span> Unified Comms <span>✦</span> Fault Diagnosis <span>✦</span> Call Routing <span>✦</span> RF Fundamentals <span>✦</span>
+    </div>
+  </div>
+</div>
 
-  <div class="column">
-    <h2>About</h2>
-    <p>
-      I work across telecommunications, electronics, and technical infrastructure,
-      with a focus on systems that are reliable, maintainable, and clearly understood.
-    </p>
-    <p>
-      My background includes enterprise communications, radio systems,
-      and hands-on technical environments where correctness and stability matter.
-    </p>
+<!-- CONTENT SECTIONS -->
+<div class="sections">
+
+  <div class="section">
+    <h2 class="section-title">About</h2>
+    <div class="section-body">
+      <p>
+        I work across telecommunications, electronics, and technical infrastructure,
+        with a focus on systems that are reliable, maintainable, and clearly understood.
+      </p>
+      <p>
+        My background includes enterprise communications, radio systems,
+        and hands-on technical environments where correctness and stability matter.
+      </p>
+    </div>
   </div>
 
-  <div class="column">
-    <h2>Expertise</h2>
-    <ul>
-      <li>Enterprise voice and unified communications systems</li>
-      <li>Cisco Unified Communications (CUCM) administration</li>
-      <li>VoIP, call routing, and signalling concepts</li>
-      <li>Radio communications and RF fundamentals</li>
-      <li>Network infrastructure and fault diagnosis</li>
-      <li>Electronics and technical troubleshooting</li>
-    </ul>
+  <div class="section">
+    <h2 class="section-title">Expertise</h2>
+    <div class="section-body">
+      <ul>
+        <li>Enterprise voice and unified communications systems</li>
+        <li>Cisco Unified Communications (CUCM) administration</li>
+        <li>VoIP, call routing, and signalling concepts</li>
+        <li>Radio communications and RF fundamentals</li>
+        <li>Network infrastructure and fault diagnosis</li>
+        <li>Electronics and technical troubleshooting</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="column contact">
-    <h2>Contact</h2>
+  <div class="section">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <a class="contact-button" href="mailto:leo@leosimmons.net">
+        Email
+        <span class="label-sub">leo@leosimmons.net</span>
+      </a>
 
-    <a class="contact-button" href="mailto:leo@leosimmons.net">
-      Email
-      <span>leo@leosimmons.net</span>
-    </a>
+      <button class="contact-button" onclick="copyDiscord(event)">
+        Discord
+        <span class="label-sub">lpt6</span>
+      </button>
 
-    <button class="contact-button" onclick="copyDiscord()">
-      Discord
-      <span>lpt6</span>
-    </button>
+      <a class="contact-button" href="https://ion16.org" target="_blank" rel="noopener">
+        Other Website
+        <span class="label-sub">ion16.org</span>
+      </a>
 
-    <a class="contact-button" href="https://ion16.org" target="_blank" rel="noopener">
-      Other Website
-      <span>ion16.org</span>
-    </a>
-
-    <a class="contact-button" href="https://www.linkedin.com/in/leo-simmons-873209367/" target="_blank" rel="noopener">
-      LinkedIn
-      <span>Professional profile</span>
-    </a>
+      <a class="contact-button" href="https://www.linkedin.com/in/leo-simmons-873209367/" target="_blank" rel="noopener">
+        LinkedIn
+        <span class="label-sub">Professional profile</span>
+      </a>
+    </div>
   </div>
 
 </div>
@@ -201,6 +352,33 @@
 <footer>
   © 2025 Leo Simmons
 </footer>
+
+<script>
+  // Discord copy
+  function copyDiscord(e) {
+    const btn = e.currentTarget;
+    navigator.clipboard.writeText('lpt6').then(() => {
+      const sub = btn.querySelector('.label-sub');
+      const original = sub.textContent;
+      sub.textContent = 'Copied to clipboard!';
+      setTimeout(() => { sub.textContent = original; }, 2000);
+    });
+  }
+
+  // Scroll-triggered animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.section, .marquee').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
